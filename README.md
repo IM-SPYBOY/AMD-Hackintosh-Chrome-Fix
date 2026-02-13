@@ -1,32 +1,36 @@
 # AMD Hackintosh Chrome Fix
 
-Fixes system crashes and reboots on AMD Hackintosh systems when launching Google Chrome or Chromium.
-This tool disables GPU acceleration and software rasterization for the browser application bundle.
+This utility resolves system instability issues on AMD Hackintosh environments caused by hardware acceleration in Google Chrome and Chromium-based browsers. It functions by disabling GPU acceleration and software rasterization flags at launch.
 
-## Features
-- **AMD Specific**: Optimized for AMD Ryzen/Threadripper Hackintosh builds.
-- **Safe**: Does not modify system files, only the application bundle.
-- **Easy**: Double-clickable script or one-line terminal command.
-- **Chrome Only**: Targets Google Chrome (can be modified for Chromium).
+## Overview
+
+On macOS systems running on AMD processers (Raphael, Ryzen, Threadripper), Chromium's GPU process can trigger kernel panics or system freezes. This tool patches the application bundle to enforce safe launch parameters permanently.
+
+### Features
+
+- Disables GPU acceleration (--disable-gpu)
+- Disables software rasterization (--disable-software-rasterizer)
+- Targeting Google Chrome specifically
+- No system file modifications (Application bundle only)
 
 ## Usage
 
-### Option 1: One-Line Command (Recommended)
-Open Terminal and paste this command:
+### One-Line Installation
+
+Execute the following command in Terminal:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/IM-SPYBOY/AMD-Hackintosh-Chrome-Fix/main/install.sh | bash
 ```
-*(Replace `YOUR_GITHUB_USERNAME` with your actual GitHub username after forking/pushing)*
 
-### Option 2: Manual Download
-1. Download `AMD_Chrome_Fix.command` from releases.
-2. Double-click to run.
-3. Enter password if prompted (only required if standard user).
+### Manual Installation
 
-## How it works
-It replaces the main executable within `Google Chrome.app` with a wrapper script that forces the following flags:
-- `--disable-gpu`
-- `--disable-software-rasterizer`
+1. Download `AMD_Chrome_Fix.command` from the releases page or clone the repository.
+2. Execute the script by double-clicking the file.
+3. If prompted, enter your system password to allow modification of the Application bundle.
 
-To revert changes, simply reinstall Chrome.
+## Technical Details
+
+The script replaces the main specific executable within the Application bundle with a shell wrapper. The original executable is backed up with a `.real` extension. The wrapper invokes the original binary with appended safety flags.
+
+To revert changes, reinstall the browser application.
