@@ -13,6 +13,19 @@ On macOS systems running on AMD processers (Raphael, Ryzen, Threadripper), Chrom
 - Targeting Google Chrome specifically
 - No system file modifications (Application bundle only)
 
+## Known Issues
+
+There are known compatibility issues with iGPU configurations on macOS. Chrome, Chromium-based browsers, and applications like Sublime Text may exhibit graphical artifacts or instability. The root cause is currently unknown.
+
+If you encounter these issues:
+1.  **Workaround**: Disable "GPU Rasterization" in `chrome://flags`.
+2.  **Alternative**: Use Safari if stability cannot be maintained.
+3.  **Emergency Launch**: If the browser crashes immediately upon opening, launch it via Terminal with the following command to temporarily disable hardware acceleration:
+
+    ```bash
+    open -a Google\ Chrome --args --disable-gpu
+    ```
+
 ## Usage
 
 ### One-Line Installation
