@@ -41,7 +41,7 @@ curl -fsSL https://raw.githubusercontent.com/IM-SPYBOY/AMD-Hackintosh-Chrome-Fix
 
 ### Manual Installation
 
-1. Download `AMD_Chrome_Fix.command` from the [releases page](https://github.com/IM-SPYBOY/AMD-Hackintosh-Chrome-Fix/releases/latest) or directly: [Download v1.0.0](https://github.com/IM-SPYBOY/AMD-Hackintosh-Chrome-Fix/releases/download/v1.0.0/AMD_Chrome_Fix.command)
+1. Download `AMD_Chrome_Fix.command` from the [releases page](https://github.com/IM-SPYBOY/AMD-Hackintosh-Chrome-Fix/releases/latest) or directly: [Download v2.0.0](https://github.com/IM-SPYBOY/AMD-Hackintosh-Chrome-Fix/releases/download/v2.0.0/AMD_Chrome_Fix.command)
 2. **Important**: macOS removes executable permissions from downloaded files. Open Terminal and run: `chmod +x ~/Downloads/AMD_Chrome_Fix.command` (adjust path if needed).
 3. Execute the script by right-clicking the file and selecting **Open** (to bypass the "unidentified developer" warning).
 4. If prompted, enter your system password to allow modification of the Application bundles.
