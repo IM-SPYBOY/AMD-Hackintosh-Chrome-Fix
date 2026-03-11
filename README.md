@@ -4,23 +4,26 @@ This utility resolves system instability issues on AMD Hackintosh environments c
 
 ## Overview
 
-On macOS systems running on AMD processers (Raphael, Ryzen, Threadripper), Chromium's GPU process can trigger kernel panics or system freezes. This tool patches the application bundle to enforce safe launch parameters permanently.
+On macOS systems running on AMD processors (Raphael, Ryzen, Threadripper), Chromium's GPU process can trigger kernel panics or system freezes. This tool patches the application bundle to enforce safe launch parameters permanently.
 
 ### Features
 
-- Disables GPU acceleration (--disable-gpu)
-- Disables software rasterization (--disable-software-rasterizer)
-- Targeting Google Chrome specifically
+- Disables GPU acceleration (`--disable-gpu`)
+- Disables software rasterization (`--disable-software-rasterizer`)
+- Disables GPU rasterization (`--disable-gpu-rasterization`)
+- Targets Google Chrome, Brave, Microsoft Edge, Arc, and Vivaldi
+- Disables background auto-updates so patches survive browser restarts
+- Auto-patches [Antigravity](https://github.com/google-deepmind/antigravity) if installed
 - No system file modifications (Application bundle only)
+- Detects and re-patches browsers that updated themselves
 
 ## Known Issues
 
 There are known compatibility issues with iGPU configurations on macOS. Chrome, Chromium-based browsers, and applications like Sublime Text may exhibit graphical artifacts or instability. The root cause is currently unknown.
 
 If you encounter these issues:
-1.  **Workaround**: Disable "GPU Rasterization" in `chrome://flags`.
-2.  **Alternative**: Use Safari if stability cannot be maintained.
-3.  **Emergency Launch**: If the browser crashes immediately upon opening, launch it via Terminal with the following command to temporarily disable hardware acceleration:
+1.  **Alternative**: Use Safari if stability cannot be maintained.
+2.  **Emergency Launch**: If the browser crashes immediately upon opening, launch it via Terminal with the following command to temporarily disable hardware acceleration:
 
     ```bash
     open -a Google\ Chrome --args --disable-gpu
@@ -39,11 +42,14 @@ curl -fsSL https://raw.githubusercontent.com/IM-SPYBOY/AMD-Hackintosh-Chrome-Fix
 ### Manual Installation
 
 1. Download `AMD_Chrome_Fix.command` from the [releases page](https://github.com/IM-SPYBOY/AMD-Hackintosh-Chrome-Fix/releases/latest) or directly: [Download v1.0.0](https://github.com/IM-SPYBOY/AMD-Hackintosh-Chrome-Fix/releases/download/v1.0.0/AMD_Chrome_Fix.command)
-2. Execute the script by double-clicking the file.
-3. If prompted, enter your system password to allow modification of the Application bundle.
+2. **Important**: macOS removes executable permissions from downloaded files. Open Terminal and run: `chmod +x ~/Downloads/AMD_Chrome_Fix.command` (adjust path if needed).
+3. Execute the script by right-clicking the file and selecting **Open** (to bypass the "unidentified developer" warning).
+4. If prompted, enter your system password to allow modification of the Application bundles.
 
 ## Technical Details
 
-The script replaces the main specific executable within the Application bundle with a shell wrapper. The original executable is backed up with a `.real` extension. The wrapper invokes the original binary with appended safety flags.
+The script replaces the main executable within the Application bundle with a shell wrapper. The original executable is backed up with a `.real` extension. The wrapper invokes the original binary with appended safety flags.
+
+If a browser updates itself and replaces the wrapper with a new native binary, running the patcher again will detect the stale `.real` backup and re-patch automatically.
 
 To revert changes, reinstall the browser application.
