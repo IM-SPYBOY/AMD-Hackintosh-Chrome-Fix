@@ -36,7 +36,7 @@ If you encounter these issues:
 Execute the following command in Terminal:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/IM-SPYBOY/AMD-Hackintosh-Chrome-Fix/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/IM-SPYBOY/AMD-Hackintosh-Chrome-Fix/main/install.sh | sudo bash
 ```
 
 ### Manual Installation
